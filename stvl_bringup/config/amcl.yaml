@@ -1,0 +1,29 @@
+# AMCL: localizes base_link on the static .pgm using /scan and publishes map -> odom.
+# Put a rough start pose below, or use RViz "2D Pose Estimate" after launch.
+amcl:
+  ros__parameters:
+    use_sim_time: false
+    base_frame_id: base_link
+    odom_frame_id: odom
+    global_frame_id: map
+    scan_topic: scan
+    map_topic: map
+    tf_broadcast: true
+    transform_tolerance: 1.0
+    laser_model_type: likelihood_field
+    laser_min_range: 0.3
+    laser_max_range: 10.0
+    max_beams: 60
+    # A guess for the A2-W; nav2_amcl::OmniMotionModel is the other option.
+    robot_model_type: nav2_amcl::DifferentialMotionModel
+    min_particles: 500
+    max_particles: 2000
+    update_min_d: 0.1
+    update_min_a: 0.1
+    resample_interval: 1
+    set_initial_pose: true
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
